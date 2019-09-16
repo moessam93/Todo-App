@@ -1,6 +1,6 @@
 'use strict';
-//Todo object constructor
-function Todo (name, duedate, status) {
+
+function Todo(name, duedate, status) {
     this.name = name;
     this.duedate = duedate;
     this.status = status;
@@ -8,34 +8,27 @@ function Todo (name, duedate, status) {
         this.status = false;
 }
 
-/*Todo prototypes*/
-//Change todo name (edit)
 Todo.prototype.changeTaskName = function (name) {
     this.name = name;
-    localStorage.setItem('Log', JSON.stringify(todoLog));   //store at local storage
+    localStorage.setItem('Log', JSON.stringify(todoLog));
 }
 
-//Change todo duedate (edit)
 Todo.prototype.changeTaskDueDate = function (duedate) {
     this.duedate = duedate;
     localStorage.setItem('Log', JSON.stringify(todoLog));
 }
 
-//Change todo completion status
 Todo.prototype.changeStatus = function () {
     this.status = (this.status !== true);
     localStorage.setItem('Log', JSON.stringify(todoLog));
 }
-/*End of Todo prototypes */
 
-//push every new todo to the global array of todos (create log)
 function addTodoLog(name, duedate) {
     const newTodo = new Todo(name, duedate);
     todoLog.push(newTodo);
     localStorage.setItem('Log', JSON.stringify(todoLog));
 }
 
-//remove todo by index
 function deleteTodoLog(id) {
     todoLog.splice(id, 1);
     localStorage.setItem('Log', JSON.stringify(todoLog));
@@ -43,21 +36,20 @@ function deleteTodoLog(id) {
         localStorage.clear();
 }
 
-//create new todo event callback (create todo when you click submit)
-function createNewTodo (event) {
+function createNewTodo(event) {
     event.preventDefault();
     const todoName = document.getElementById('todo-name').value;
-    const todoDuedate = document.getElementById('todo-duedate').value.split('-').reverse().join('-');   //modify duedate format to dd/mm/yyyy 
+    const todoDuedate = document.getElementById('todo-duedate').value.split('-').reverse().join('-');
 
-    if (todoName.trim() === '') {   //dont accept white spaces as todo names (alert users and return)
-        alert('Invalid name, please try again');
+    if (todoName.trim() === '') {
+        alert('Invalid Todo, please try again');
         return;
     }
 
-    document.getElementById('todo-name').value = '';        //set form to blank value after submitting
+    document.getElementById('todo-name').value = '';
     document.getElementById('todo-duedate').value = '';
 
-    let todos_li = document.createElement('li');    //add the todo to the DOM
+    let todos_li = document.createElement('li');
     todos_li.className = 'list-group-item';
     todos_li.style.display = 'block';
 

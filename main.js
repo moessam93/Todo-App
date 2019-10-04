@@ -1,6 +1,6 @@
 'use strict';
 //Todo object constructor
-function Todo (name, duedate, status) {
+function Todo(name, duedate, status) {
     this.name = name;
     this.duedate = duedate;
     this.status = status;
@@ -44,7 +44,7 @@ function deleteTodoLog(id) {
 }
 
 //create new todo event callback (create todo when you click submit)
-function createNewTodo (event) {
+function createNewTodo(event) {
     event.preventDefault();
     const todoName = document.getElementById('todo-name').value;
     const todoDuedate = document.getElementById('todo-duedate').value.split('-').reverse().join('-');   //modify duedate format to dd/mm/yyyy 
